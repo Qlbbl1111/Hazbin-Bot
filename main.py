@@ -4,8 +4,9 @@ from discord.ext import commands, tasks
 import json
 import requests
 import time
+import token
 
-token = 'OTUzMzI4MDYwNTQ2MDU2MTk0.YjC98Q.bhEnaOimM7C1fwCloTaqZWI4KBA'
+bot_token = token
 author_id = '892999941146963969'
 api_key= ''
 img = 'https://i.imgur.com/kPLPAJs.jpg'
@@ -63,4 +64,4 @@ if __name__ == '__main__':
 
 called_once_a_day.start()
 
-bot.run(token)  # Starts the bot
+bot.run(bot_token)  # Starts the bot
