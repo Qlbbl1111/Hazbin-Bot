@@ -34,7 +34,7 @@ async def on_ready():  # When the bot is ready
 @bot.command(name='gif', help='Gets a random gif from the qlbbl-api.')
 async def gif(ctx):
 
-    response = requests.get(f"{url}/api/v1/hazbin/gif/random")
+    response = requests.get(f"{url}/v1/hazbin/gif/random")
     r = json.loads(response.text)
 
     await ctx.send(r)
