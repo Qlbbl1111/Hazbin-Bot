@@ -41,19 +41,20 @@ async def on_ready():  # When the bot is ready
     print(bot.user)
  
 
-#Gif
-@bot.command(name='gif', help='Gets a random gif from the qlbbl-api.')
-async def gif(ctx):
+#hazbin Image
+@bot.command(name='hazbin', help='Gets a random gif or image from the qlbbl-api.')
+async def hazbin(ctx):
 
     response = requests.get(f"{url}/v1/hazbin/gif/random")
     r = json.loads(response.text)
 
     await ctx.send(r)
 
-@gif.error
-async def gif_error(ctx, error):
+@hazbin.error
+async def hazbin_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Error: Something went wrong.')
+
 
 #Toggles Helluva Message from yes to no
 @bot.command(name='test', help='Toggles Helluva Message from yes to no.')

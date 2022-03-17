@@ -10,5 +10,5 @@ Debugging:
 *Returns the arg if the bot is working properly*
 
 Images:
-~gif
+~hazbin
 *Returns a random Hazbin Hotel gif or image from the [Qlbbl-API](https://github.com/Qlbbl1111/Qlbbl-API).*
