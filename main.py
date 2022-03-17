@@ -41,6 +41,17 @@ async def on_ready():  # When the bot is ready
     print(bot.user)
  
 
+#Test
+@bot.command(name='test', help='Tests the bot.')
+async def test(ctx, *, arg):
+  print(arg)
+  await ctx.send(arg)
+
+@test.error
+async def test_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        await ctx.send('Error: Something went wrong.')
+
 #hazbin Image
 @bot.command(name='hazbin', help='Gets a random gif or image from the qlbbl-api.')
 async def hazbin(ctx):
@@ -57,7 +68,7 @@ async def hazbin_error(ctx, error):
 
 
 #Toggles Helluva Message from yes to no
-@bot.command(name='test', help='Toggles Helluva Message from yes to no.')
+@bot.command(name='hellyes', help='Toggles Helluva Message from yes to no.')
 async def hellyes(ctx):
     if Helluva == 0:
         Helluva = 1
@@ -70,19 +81,6 @@ async def hellyes(ctx):
 async def hellyes(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Error: Something went wrong.')
-
-
-#Test
-@bot.command(name='test', help='Tests the bot.')
-async def test(ctx, *, arg):
-  print(arg)
-  await ctx.send(arg)
-
-@test.error
-async def test_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send('Error: Something went wrong.')
-
 
 
 #Helluva Boss Loop
