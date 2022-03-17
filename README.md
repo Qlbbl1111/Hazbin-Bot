@@ -11,4 +11,4 @@ Debugging:
 
 Images:
 ~gif
-*Returns a random Hazbin Hotel gif or image from the [qlbbl api](https://github.com/Qlbbl1111/Qlbbl-API).*
+*Returns a random Hazbin Hotel gif or image from the [Qlbbl-API](https://github.com/Qlbbl1111/Qlbbl-API).*
