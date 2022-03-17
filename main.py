@@ -59,7 +59,6 @@ async def test_error(ctx, error):
 
 
 #Message 1
-"""
 @tasks.loop(seconds=86400)
 async def called_once_a_day():
   message_channel = bot.get_channel(channel_id)
@@ -71,12 +70,12 @@ async def called_once_a_day():
 async def before():
     await bot.wait_until_ready()
     print("Finished waiting")
-"""
+
 
 if __name__ == '__main__':
   pass
 
 
-#called_once_a_day.start()
+called_once_a_day.start()
 
 bot.run(token)  # Starts the bot
