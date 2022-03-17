@@ -64,7 +64,7 @@ async def called_once_a_day():
   message_channel = bot.get_channel(channel_id)
   await message_channel.send("__Is part 2 of the Helluva Boss finale out yet?__")
   time.sleep(3)
-  await message_channel.send(img)
+  await message_channel.send('https://i.imgur.com/3sARn4H.jpeg')
 
 @called_once_a_day.before_loop
 async def before():
