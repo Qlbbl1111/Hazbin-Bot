@@ -94,7 +94,7 @@ async def called_once_a_day():
         time.sleep(3)
         await message_channel.send('https://i.imgur.com/3sARn4H.jpeg')
     elif Helluva == 1:
-        wait message_channel.send("__Is part 2 of the Helluva Boss finale out yet?__")
+        await message_channel.send("__Is part 2 of the Helluva Boss finale out yet?__")
         time.sleep(3)
         await message_channel.send('YES! \n https://tenor.com/view/oh-yeah-mochi-peach-cat-corean-gif-24678746') 
 
