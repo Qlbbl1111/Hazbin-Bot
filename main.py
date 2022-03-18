@@ -13,6 +13,7 @@ activity = discord.Game(name="with your feelings")
 author_id = '892999941146963969'
 channel_id = 923432498925547531
 
+#Variables
 url = 'https://qlbbl-api.net'
 Helluva = 0
 
@@ -24,7 +25,7 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 
-#Command prefix.
+#Bot info
 bot = commands.Bot(
 	command_prefix="~",  # Change to desired prefix
 	case_insensitive=True, # Commands aren't case-sensitive
@@ -32,14 +33,16 @@ bot = commands.Bot(
     status=discord.Status.idle 
 )
 
+#Author ID
 bot.author_id = author_id  # Change to your discord id!!!
 
 
+#Bot Ready
 @bot.event 
 async def on_ready():  # When the bot is ready
-    print("I'm in")
-    print(bot.user)
+    print(f"{bot.user} Started.")
  
+#COMMANDS
 
 #Test
 @bot.command(name='test', help='Tests the bot.')
@@ -52,7 +55,8 @@ async def test_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Error: Something went wrong.')
 
-#hazbin Image
+
+#Hazbin Image
 @bot.command(name='hazbin', help='Gets a random gif or image from the qlbbl-api.')
 async def hazbin(ctx):
 
@@ -67,21 +71,30 @@ async def hazbin_error(ctx, error):
         await ctx.send('Error: Something went wrong.')
 
 
-#Toggles Helluva Message from yes to no
-@bot.command(name='hellyes', help='Toggles Helluva Message from yes to no.')
-async def hellyes(ctx):
-    if Helluva == 0:
-        Helluva = 1
-        await ctx.send('Yes')
-    elif Helluva == 1:
-        Helluva = 0
-        await ctx.send('No')
+#Qlbbl-Api
+@bot.command(name='qlbblapi', help='Fetch from the qlbbl-api.')
+async def qlbblapi(ctx, *args):
 
-@hellyes.error
-async def hellyes(ctx, error):
+    response = requests.get('{}/{}'.format(url, '/'.join(args)))
+    response_value = response
+    print(response)
+    if response.status_code == 200:
+        r = json.loads(response.text)
+        f = open("response.txt", "w")
+        f.write(f'{json.dumps(r, indent=4)}')
+        f.close()
+        await ctx.send(f'{response}\n', file=discord.File('response.txt'))
+        os.remove("response.txt")
+    else:
+        await ctx.send('Error: Bad request.')
+
+@qlbblapi.error
+async def qlbblapi_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Error: Something went wrong.')
 
+
+#TASKS
 
 #Helluva Boss Loop
 @tasks.loop(seconds=86400)
@@ -102,10 +115,15 @@ async def before():
     print("Sent Daily Message")
 
 
+
+
+
+#boiler plate
 if __name__ == '__main__':
   pass
 
 
-called_once_a_day.start()
-
+#main functions
+#called_once_a_day.start()
 bot.run(token)  # Starts the bot
+
