@@ -100,14 +100,9 @@ async def qlbblapi_error(ctx, error):
 @tasks.loop(seconds=86400)
 async def called_once_a_day():
     message_channel = bot.get_channel(channel_id)
-    if Helluva == 0:
-        await message_channel.send("__Is part 2 of the Helluva Boss finale out yet?__")
-        time.sleep(3)
-        await message_channel.send('https://i.imgur.com/3sARn4H.jpeg')
-    elif Helluva == 1:
-        await message_channel.send("__Is part 2 of the Helluva Boss finale out yet?__")
-        time.sleep(3)
-        await message_channel.send('YES! \n https://tenor.com/view/oh-yeah-mochi-peach-cat-corean-gif-24678746') 
+    await message_channel.send("__Is part 2 of the Helluva Boss finale out yet?__")
+    time.sleep(3)
+    await message_channel.send('https://i.imgur.com/3sARn4H.jpeg')
 
 @called_once_a_day.before_loop
 async def before():
@@ -120,10 +115,6 @@ async def before():
 
 #boiler plate
 if __name__ == '__main__':
-  pass
-
-
-#main functions
-#called_once_a_day.start()
-bot.run(token)  # Starts the bot
+  called_once_a_day.start()
+  bot.run(token)
 
